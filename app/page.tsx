@@ -67,7 +67,7 @@ export default function YahyaBouybriPortfolio() {
 
   const tools = ["Meta Ads", "TikTok Ads", "Canva", "CapCut", "Excel", "CRM"];
 
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -105,10 +105,10 @@ export default function YahyaBouybriPortfolio() {
           <div className="flex items-center gap-3">
             {mounted && (
               <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
                 className="rounded-full border border-black/10 bg-black/5 p-2 transition hover:scale-105 dark:border-white/10 dark:bg-white/5"
               >
-                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                {resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
               </button>
             )}
 
@@ -162,6 +162,21 @@ export default function YahyaBouybriPortfolio() {
                 className="rounded-2xl border border-black/15 bg-black/5 px-6 py-3 text-sm font-semibold transition hover:-translate-y-1 hover:bg-black/10 dark:border-[#f8f3ea]/20 dark:bg-[#f8f3ea]/5 dark:hover:bg-[#f8f3ea]/10"
               >
                 Call Now
+              </a>
+              <a
+                href="/MyCV.pdf"
+                download
+                className="rounded-2xl border border-black/15 bg-black/5 px-6 py-3 text-sm font-semibold transition hover:-translate-y-1 hover:bg-black/5 dark:border-[#f8f3ea]/20 dark:bg-[#f8f3ea]/5 dark:hover:bg-[#f8f3ea]/10"
+              >
+                Download CV
+              </a>
+              <a
+                href="https://www.linkedin.com/in/yahya-bouybri-9925602a3/"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-2xl border border-black/15 bg-transparent px-6 py-3 text-sm font-semibold transition hover:-translate-y-1 hover:bg-black/5 dark:border-[#f8f3ea]/20 dark:bg-[#f8f3ea]/5 dark:hover:bg-[#f8f3ea]/10"
+              >
+                LinkedIn
               </a>
             </div>
 
@@ -299,55 +314,93 @@ export default function YahyaBouybriPortfolio() {
         </div>
       </motion.section>
 
-      <motion.section
-        id="experience"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.15 }}
-        variants={fadeUp}
-        transition={{ duration: 0.6 }}
-        className="mx-auto max-w-7xl px-6 pb-16 md:px-10"
-      >
-        <div className="rounded-[2rem] border border-black/10 bg-gradient-to-br from-[#dce7f7] to-[#eef4fb] p-8 shadow-xl md:p-10 dark:border-[#17365d] dark:from-[#0c1a30] dark:to-[#102848]">
-          <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
-            Experience
-          </p>
-          <h2 className="mt-3 text-3xl font-black">Professional Journey</h2>
+<motion.section
+  id="experience"
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true, amount: 0.15 }}
+  variants={fadeUp}
+  transition={{ duration: 0.6 }}
+  className="mx-auto max-w-7xl px-6 pb-16 md:px-10"
+>
+  <div className="relative overflow-hidden rounded-[2.5rem] border border-black/10 bg-gradient-to-br from-[#dce7f7] via-[#eef4fb] to-[#f8f3ea] p-8 shadow-xl md:p-10 dark:border-[#17365d] dark:from-[#081a33] dark:via-[#0d2242] dark:to-[#07101c]">
+    
+    <div className="absolute left-0 top-0 h-40 w-40 rounded-full bg-[#7dd3fc]/20 blur-3xl dark:bg-[#38bdf8]/20" />
+    <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-[#f8f3ea]/30 blur-3xl dark:bg-[#60a5fa]/10" />
 
-          <div className="mt-10 grid gap-6">
-            {experience.map((job) => (
-              <motion.div
-                key={job.title}
-                whileHover={{ y: -6, scale: 1.01 }}
-                className="rounded-[1.5rem] border border-black/10 bg-white/55 p-6 transition dark:border-[#f8f3ea]/20 dark:bg-[#08111f]/75"
-              >
-                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                  <div>
-                    <h3 className="text-2xl font-bold">{job.title}</h3>
-                    <p className="mt-1 text-[#0d2342]/72 dark:text-[#f8f3ea]/72">
+    <p className="relative text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
+      Experience
+    </p>
+    <h2 className="relative mt-3 text-3xl font-black text-[#0d2342] dark:text-[#f8f3ea]">
+      Professional Journey
+    </h2>
+    <p className="relative mt-3 max-w-2xl text-sm leading-7 text-[#0d2342]/65 dark:text-[#f8f3ea]/65">
+      A journey built on marketing strategy, client acquisition, business development, and digital growth.
+    </p>
+
+    <div className="relative mt-12">
+      <div className="absolute left-[22px] top-0 hidden h-full w-px bg-gradient-to-b from-transparent via-[#0d2342]/20 to-transparent dark:via-[#f8f3ea]/20 md:block" />
+
+      <div className="space-y-8">
+        {experience.map((job, index) => (
+          <motion.div
+            key={job.title}
+            whileHover={{ y: -8, scale: 1.01 }}
+            transition={{ duration: 0.25 }}
+            className="relative md:pl-16"
+          >
+            <div className="absolute left-0 top-5 hidden md:flex">
+              <div className="relative flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-sm font-bold text-[#0d2342] shadow-lg dark:border-[#f8f3ea]/15 dark:bg-[#0d1d35] dark:text-[#f8f3ea]">
+                {index + 1}
+                <div className="absolute inset-0 rounded-full bg-[#38bdf8]/20 blur-md dark:bg-[#60a5fa]/20" />
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-[1.8rem] border border-black/10 bg-white/60 p-6 shadow-lg backdrop-blur-xl transition-all duration-300 hover:shadow-2xl dark:border-[#f8f3ea]/10 dark:bg-[#08111f]/80">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#0d2342] via-[#60a5fa] to-[#cbd5e1] dark:from-[#38bdf8] dark:via-[#60a5fa] dark:to-transparent" />
+
+              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <div className="mb-3 flex flex-wrap items-center gap-3">
+                    <span className="rounded-full border border-black/10 bg-black/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#0d2342]/75 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/5 dark:text-[#f8f3ea]/75">
                       {job.company}
-                    </p>
+                    </span>
                   </div>
-                  <span className="rounded-full border border-black/10 bg-black/5 px-4 py-2 text-sm dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6">
-                    {job.period}
-                  </span>
+
+                  <h3 className="text-2xl font-black text-[#0d2342] transition group-hover:translate-x-1 dark:text-[#f8f3ea]">
+                    {job.title}
+                  </h3>
                 </div>
 
-                <ul className="mt-6 grid gap-3">
-                  {job.points.map((point) => (
-                    <li
-                      key={point}
-                      className="rounded-2xl border border-black/10 bg-black/5 px-4 py-3 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/[0.03]"
-                    >
+                <span className="rounded-full border border-black/10 bg-white/80 px-4 py-2 text-sm font-semibold text-[#0d2342]/80 shadow-sm dark:border-[#f8f3ea]/10 dark:bg-[#102848] dark:text-[#f8f3ea]/85">
+                  {job.period}
+                </span>
+              </div>
+
+              <div className="mt-6 grid gap-3">
+                {job.points.map((point, pointIndex) => (
+                  <motion.div
+                    key={point}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: pointIndex * 0.04 }}
+                    className="flex items-start gap-3 rounded-2xl border border-black/10 bg-black/5 px-4 py-3 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/[0.03]"
+                  >
+                    <div className="mt-1.5 h-2.5 w-2.5 rounded-full bg-[#0d2342] dark:bg-[#7dd3fc]" />
+                    <p className="text-sm leading-7 text-[#0d2342]/78 dark:text-[#f8f3ea]/78">
                       {point}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</motion.section>
 
       <motion.section
         initial="hidden"
@@ -361,7 +414,7 @@ export default function YahyaBouybriPortfolio() {
           <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
             Tools
           </p>
-          <h2 className="mt-3 text-3xl font-black">Tools I Works With</h2>
+          <h2 className="mt-3 text-3xl font-black">Tools I Work With</h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {tools.map((tool) => (
               <motion.span
