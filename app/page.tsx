@@ -1,3 +1,10 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
 export default function YahyaBouybriPortfolio() {
   const navItems = ["About", "Skills", "Experience", "Contact"];
   const skills = [
@@ -58,13 +65,29 @@ export default function YahyaBouybriPortfolio() {
     "Business Development",
   ];
 
+  const tools = ["Meta Ads", "TikTok Ads", "Canva", "CapCut", "Excel", "CRM"];
+
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 35 },
+    show: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div className="min-h-screen scroll-smooth bg-[#08111f] text-[#f8f3ea]">
-      <header className="sticky top-0 z-50 border-b border-[#f8f3ea]/10 bg-[#08111f]/80 backdrop-blur-xl">
+    <div className="min-h-screen scroll-smooth bg-[#f8f3ea] text-[#0d2342] transition-colors duration-300 dark:bg-[#08111f] dark:text-[#f8f3ea]">
+      <header className="sticky top-0 z-50 border-b border-black/10 bg-[#f8f3ea]/80 backdrop-blur-xl dark:border-white/10 dark:bg-[#08111f]/80">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
           <div>
-            <p className="text-xs uppercase tracking-[0.35em] text-[#f8f3ea]/55">Portfolio</p>
-            <h1 className="text-lg font-black text-[#f8f3ea]">Yahya Bouybri</h1>
+            <p className="text-xs uppercase tracking-[0.35em] text-[#0d2342]/55 dark:text-[#f8f3ea]/55">
+              Portfolio
+            </p>
+            <h1 className="text-lg font-black">Yahya Bouybri</h1>
           </div>
 
           <nav className="hidden items-center gap-6 md:flex">
@@ -72,107 +95,142 @@ export default function YahyaBouybriPortfolio() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-sm font-medium text-[#f8f3ea]/72 transition hover:text-[#f8f3ea]"
+                className="text-sm font-medium text-[#0d2342]/70 transition hover:text-[#0d2342] dark:text-[#f8f3ea]/72 dark:hover:text-[#f8f3ea]"
               >
                 {item}
               </a>
             ))}
           </nav>
 
-          <a
-            href="mailto:yahyabouybri1@gmail.com"
-            className="rounded-full bg-[#f8f3ea] px-4 py-2 text-sm font-semibold text-[#0d2342] transition hover:scale-[1.02]"
-          >
-            Hire Me
-          </a>
+          <div className="flex items-center gap-3">
+            {mounted && (
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="rounded-full border border-black/10 bg-black/5 p-2 transition hover:scale-105 dark:border-white/10 dark:bg-white/5"
+              >
+                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+            )}
+
+            <a
+              href="mailto:yahyabouybri1@gmail.com"
+              className="rounded-full bg-[#0d2342] px-4 py-2 text-sm font-semibold text-[#f8f3ea] transition hover:scale-[1.03] dark:bg-[#f8f3ea] dark:text-[#0d2342]"
+            >
+              Hire Me
+            </a>
+          </div>
         </div>
       </header>
-      <section id="about" className="relative overflow-hidden border-b border-[#f8f3ea]/10 bg-gradient-to-br from-[#07101c] via-[#0d1b33] to-[#12345a]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(248,243,234,0.16),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(196,214,255,0.12),transparent_26%)]" />
-        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(248,243,234,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(248,243,234,0.08)_1px,transparent_1px)] [background-size:42px_42px]" />
+
+      <section
+        id="about"
+        className="relative overflow-hidden border-b border-black/10 bg-gradient-to-br from-[#ede2d4] via-[#f8f3ea] to-[#dce7f7] dark:border-white/10 dark:from-[#07101c] dark:via-[#0d1b33] dark:to-[#12345a]"
+      >
+        <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(0,0,0,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.06)_1px,transparent_1px)] [background-size:42px_42px] dark:[background-image:linear-gradient(rgba(248,243,234,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(248,243,234,0.08)_1px,transparent_1px)]" />
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-20 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-28">
-          <div>
-            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-[#f8f3ea]/65">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.7 }}
+          >
+            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-[#0d2342]/65 dark:text-[#f8f3ea]/65">
               Portfolio Website
             </p>
             <h1 className="max-w-3xl text-5xl font-black leading-none sm:text-6xl lg:text-7xl">
               Yahya Bouybri
             </h1>
-            <p className="mt-4 max-w-2xl text-xl text-[#f8f3ea]/85 sm:text-2xl">
+            <p className="mt-4 max-w-2xl text-xl text-[#0d2342]/80 dark:text-[#f8f3ea]/85 sm:text-2xl">
               Marketing & Business Development Manager
             </p>
-            <p className="mt-8 max-w-2xl text-base leading-8 text-[#f8f3ea]/72 sm:text-lg">
-              Results-driven marketing and logistics professional with 15 months of experience in delivery operations, business development, and digital marketing. Proven ability to acquire clients, build partnerships, and expand business networks.
+            <p className="mt-8 max-w-2xl text-base leading-8 text-[#0d2342]/72 dark:text-[#f8f3ea]/72 sm:text-lg">
+              Results-driven marketing and logistics professional with 15 months
+              of experience in delivery operations, business development, and
+              digital marketing.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="mailto:yahyabouybri1@gmail.com"
-                className="rounded-2xl bg-[#f8f3ea] px-6 py-3 text-sm font-semibold text-[#0d2342] shadow-lg shadow-black/20 transition hover:scale-[1.02]"
+                className="rounded-2xl bg-[#0d2342] px-6 py-3 text-sm font-semibold text-[#f8f3ea] shadow-lg transition hover:-translate-y-1 hover:scale-[1.03] dark:bg-[#f8f3ea] dark:text-[#0d2342]"
               >
                 Contact by Email
               </a>
               <a
                 href="tel:+212640016052"
-                className="rounded-2xl border border-[#f8f3ea]/20 bg-[#f8f3ea]/5 px-6 py-3 text-sm font-semibold text-[#f8f3ea] transition hover:bg-[#f8f3ea]/10"
+                className="rounded-2xl border border-black/15 bg-black/5 px-6 py-3 text-sm font-semibold transition hover:-translate-y-1 hover:bg-black/10 dark:border-[#f8f3ea]/20 dark:bg-[#f8f3ea]/5 dark:hover:bg-[#f8f3ea]/10"
               >
                 Call Now
               </a>
             </div>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-3xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 p-5 backdrop-blur">
-                <p className="text-3xl font-black text-[#f8f3ea]">15+</p>
-                <p className="mt-2 text-sm text-[#f8f3ea]/70">Months of professional experience</p>
-              </div>
-              <div className="rounded-3xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 p-5 backdrop-blur">
-                <p className="text-3xl font-black text-[#f8f3ea]">60–70%</p>
-                <p className="mt-2 text-sm text-[#f8f3ea]/70">Shops in Agadir contacted and partnered</p>
-              </div>
-              <div className="rounded-3xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 p-5 backdrop-blur">
-                <p className="text-3xl font-black text-[#f8f3ea]">3</p>
-                <p className="mt-2 text-sm text-[#f8f3ea]/70">Working languages</p>
-              </div>
+              {["15+ Months", "60–70% Shops", "3 Languages"].map((item) => (
+                <motion.div
+                  key={item}
+                  whileHover={{ y: -6, scale: 1.03 }}
+                  className="rounded-3xl border border-black/10 bg-white/40 p-5 backdrop-blur dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6"
+                >
+                  <p className="text-xl font-black">{item}</p>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="grid gap-6">
-            <div className="overflow-hidden rounded-[2rem] border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 p-3 shadow-2xl shadow-black/30 backdrop-blur">
-              <div className="relative flex min-h-[420px] items-end overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-[#f8f3ea]/25 via-[#17365d] to-[#08111f] p-8">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(248,243,234,0.26),transparent_30%)]" />
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid gap-6"
+          >
+            <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-white/30 p-3 shadow-2xl backdrop-blur dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6">
+              <div className="relative flex min-h-[420px] items-end overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-[#ffffff] via-[#dce7f7] to-[#f1e7d6] p-8 dark:from-[#f8f3ea]/25 dark:via-[#17365d] dark:to-[#08111f]">
                 <div className="relative w-full">
-                  <div className="mx-auto flex h-64 w-64 items-center justify-center rounded-full border border-[#f8f3ea]/20 bg-[#f8f3ea]/10 text-center text-sm text-[#f8f3ea]/65 shadow-2xl shadow-black/30">
+                  <motion.div
+                    whileHover={{ scale: 1.05, rotate: 1 }}
+                    className="mx-auto flex h-64 w-64 items-center justify-center rounded-full border border-black/10 bg-white/40 shadow-2xl dark:border-[#f8f3ea]/20 dark:bg-[#f8f3ea]/10"
+                  >
                     <img
                       src="/mypic.png"
                       alt="Yahya Bouybri"
-                      className="w-64 h-64 rounded-full object-cover"
+                      className="h-64 w-64 rounded-full object-cover"
                     />
-                  </div>
-                  <div className="mt-6 rounded-[1.5rem] border border-[#f8f3ea]/10 bg-[#0a162a]/75 p-6">
+                  </motion.div>
+
+                  <div className="mt-6 rounded-[1.5rem] border border-black/10 bg-white/55 p-6 dark:border-[#f8f3ea]/10 dark:bg-[#0a162a]/75">
                     <div className="flex items-center gap-4">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#f8f3ea] text-2xl font-black text-[#0d2342]">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0d2342] text-2xl font-black text-[#f8f3ea] dark:bg-[#f8f3ea] dark:text-[#0d2342]">
                         YB
                       </div>
                       <div>
-                        <h2 className="text-2xl font-bold text-[#f8f3ea]">Quick Profile</h2>
-                        <p className="text-sm text-[#f8f3ea]/60">Agadir, Morocco</p>
+                        <h2 className="text-2xl font-bold">Quick Profile</h2>
+                        <p className="text-sm text-[#0d2342]/60 dark:text-[#f8f3ea]/60">
+                          Agadir, Morocco
+                        </p>
                       </div>
                     </div>
 
-                    <div className="mt-8 space-y-4 text-sm text-[#f8f3ea]/85">
-                      <div className="rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/5 p-4">
-                        <p className="text-[#f8f3ea]/50">Phone</p>
-                        <p className="mt-1 font-medium">+212 640 016 052</p>
-                      </div>
-                      <div className="rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/5 p-4">
-                        <p className="text-[#f8f3ea]/50">Email</p>
-                        <p className="mt-1 font-medium break-all">yahyabouybri1@gmail.com</p>
-                      </div>
-                      <div className="rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/5 p-4">
-                        <p className="text-[#f8f3ea]/50">Focus</p>
-                        <p className="mt-1 font-medium">Business development, digital marketing, partnerships, growth</p>
-                      </div>
+                    <div className="mt-8 space-y-4 text-sm">
+                      {[
+                        ["Phone", "+212 640 016 052"],
+                        ["Email", "yahyabouybri1@gmail.com"],
+                        [
+                          "Focus",
+                          "Business development, digital marketing, partnerships, growth",
+                        ],
+                      ].map(([label, value]) => (
+                        <div
+                          key={label}
+                          className="rounded-2xl border border-black/10 bg-black/5 p-4 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/5"
+                        >
+                          <p className="text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
+                            {label}
+                          </p>
+                          <p className="mt-1 font-medium break-all">{value}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -180,147 +238,254 @@ export default function YahyaBouybriPortfolio() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
-              <a href="mailto:yahyabouybri1@gmail.com" className="rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 p-4 text-center text-sm font-semibold text-[#f8f3ea] transition hover:bg-[#f8f3ea]/10">
-                Email
-              </a>
-              <a href="tel:+212640016052" className="rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 p-4 text-center text-sm font-semibold text-[#f8f3ea] transition hover:bg-[#f8f3ea]/10">
-                Phone
-              </a>
-              <a href="https://wa.me/212640016052" className="rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 p-4 text-center text-sm font-semibold text-[#f8f3ea] transition hover:bg-[#f8f3ea]/10">
-                WhatsApp
-              </a>
+              {[
+                ["Email", "mailto:yahyabouybri1@gmail.com"],
+                ["Phone", "tel:+212640016052"],
+                ["WhatsApp", "https://wa.me/212640016052"],
+              ].map(([label, href]) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  className="rounded-2xl border border-black/10 bg-white/35 p-4 text-center text-sm font-semibold transition dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6"
+                >
+                  {label}
+                </motion.a>
+              ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section id="skills" className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+      <motion.section
+        id="skills"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        transition={{ duration: 0.6 }}
+        className="mx-auto max-w-7xl px-6 py-16 md:px-10"
+      >
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="rounded-[2rem] border border-[#17365d] bg-[#0d1d35] p-8 shadow-lg shadow-black/10">
-            <p className="text-sm uppercase tracking-[0.3em] text-[#f8f3ea]/50">About</p>
-            <h2 className="mt-3 text-3xl font-black text-[#f8f3ea]">Professional Summary</h2>
-            <p className="mt-6 text-base leading-8 text-[#f8f3ea]/78">
-              Yahya Bouybri is a results-driven marketing and logistics professional with experience in delivery operations, business development, and digital marketing. He has demonstrated a strong ability to acquire clients, build partnerships, support operations, and improve customer relationships through strategy and communication.
+          <div className="rounded-[2rem] border border-black/10 bg-white/45 p-8 shadow-lg dark:border-[#17365d] dark:bg-[#0d1d35]">
+            <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
+              About
+            </p>
+            <h2 className="mt-3 text-3xl font-black">Professional Summary</h2>
+            <p className="mt-6 text-base leading-8 text-[#0d2342]/78 dark:text-[#f8f3ea]/78">
+              Yahya Bouybri is a results-driven marketing and logistics
+              professional with experience in delivery operations, business
+              development, and digital marketing.
             </p>
           </div>
 
-          <div className="rounded-[2rem] border border-[#d9ccb6]/25 bg-[#f8f3ea] p-8 text-[#0d2342] shadow-lg shadow-black/10">
-            <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/55">Core Skills</p>
-            <h2 className="mt-3 text-3xl font-black">What He Does Best</h2>
+          <div className="rounded-[2rem] border border-black/10 bg-[#0d2342] p-8 text-[#f8f3ea] shadow-lg dark:border-[#d9ccb6]/25 dark:bg-[#f8f3ea] dark:text-[#0d2342]">
+            <p className="text-sm uppercase tracking-[0.3em] opacity-55">
+              Core Skills
+            </p>
+            <h2 className="mt-3 text-3xl font-black">What I Do Best</h2>
             <div className="mt-6 flex flex-wrap gap-3">
               {skills.map((skill) => (
-                <span
+                <motion.span
                   key={skill}
-                  className="rounded-full border border-[#0d2342]/12 bg-[#0d2342]/5 px-4 py-2 text-sm text-[#0d2342]/90"
+                  whileHover={{ scale: 1.07 }}
+                  className="rounded-full border border-current/15 bg-current/5 px-4 py-2 text-sm"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="experience" className="mx-auto max-w-7xl px-6 pb-16 md:px-10">
-        <div className="rounded-[2rem] border border-[#17365d] bg-gradient-to-br from-[#0c1a30] to-[#102848] p-8 shadow-xl shadow-black/20 md:p-10">
-          <p className="text-sm uppercase tracking-[0.3em] text-[#f8f3ea]/50">Experience</p>
-          <h2 className="mt-3 text-3xl font-black text-[#f8f3ea]">Professional Journey</h2>
+      <motion.section
+        id="experience"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={fadeUp}
+        transition={{ duration: 0.6 }}
+        className="mx-auto max-w-7xl px-6 pb-16 md:px-10"
+      >
+        <div className="rounded-[2rem] border border-black/10 bg-gradient-to-br from-[#dce7f7] to-[#eef4fb] p-8 shadow-xl md:p-10 dark:border-[#17365d] dark:from-[#0c1a30] dark:to-[#102848]">
+          <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
+            Experience
+          </p>
+          <h2 className="mt-3 text-3xl font-black">Professional Journey</h2>
+
           <div className="mt-10 grid gap-6">
             {experience.map((job) => (
-              <div key={job.title} className="rounded-[1.5rem] border border-[#f8f3ea]/30 bg-[#08111f]/75 p-6 transition duration-300 hover:scale-[1.02] hover:shadow-2xl">
+              <motion.div
+                key={job.title}
+                whileHover={{ y: -6, scale: 1.01 }}
+                className="rounded-[1.5rem] border border-black/10 bg-white/55 p-6 transition dark:border-[#f8f3ea]/20 dark:bg-[#08111f]/75"
+              >
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div>
-                    <h3 className="text-2xl font-bold text-[#f8f3ea]">{job.title}</h3>
-                    <p className="mt-1 text-[#f8f3ea]/72">{job.company}</p>
+                    <h3 className="text-2xl font-bold">{job.title}</h3>
+                    <p className="mt-1 text-[#0d2342]/72 dark:text-[#f8f3ea]/72">
+                      {job.company}
+                    </p>
                   </div>
-                  <span className="rounded-full border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 px-4 py-2 text-sm text-[#f8f3ea]/78">
+                  <span className="rounded-full border border-black/10 bg-black/5 px-4 py-2 text-sm dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6">
                     {job.period}
                   </span>
                 </div>
-                <ul className="mt-6 grid gap-3 text-[#f8f3ea]/78">
+
+                <ul className="mt-6 grid gap-3">
                   {job.points.map((point) => (
-                    <li key={point} className="rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/[0.03] px-4 py-3">
+                    <li
+                      key={point}
+                      className="rounded-2xl border border-black/10 bg-black/5 px-4 py-3 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/[0.03]"
+                    >
                       {point}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-16 md:px-10">
+      <motion.section
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={fadeUp}
+        transition={{ duration: 0.6 }}
+        className="mx-auto max-w-7xl px-6 pb-16 md:px-10"
+      >
+        <div className="mb-8 rounded-[2rem] border border-black/10 bg-white/45 p-8 shadow-lg dark:border-[#17365d] dark:bg-[#0d1d35]">
+          <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
+            Tools
+          </p>
+          <h2 className="mt-3 text-3xl font-black">Tools I Works With</h2>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {tools.map((tool) => (
+              <motion.span
+                key={tool}
+                whileHover={{ y: -4, scale: 1.05 }}
+                className="rounded-full border border-black/10 bg-black/5 px-4 py-2 text-sm dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6"
+              >
+                {tool}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+
         <div className="grid gap-8 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-[#d9ccb6]/25 bg-[#f8f3ea] p-8 text-[#0d2342] shadow-lg shadow-black/10">
-            <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/55">Projects & Achievements</p>
+          <div className="rounded-[2rem] border border-black/10 bg-[#0d2342] p-8 text-[#f8f3ea] shadow-lg dark:border-[#d9ccb6]/25 dark:bg-[#f8f3ea] dark:text-[#0d2342]">
+            <p className="text-sm uppercase tracking-[0.3em] opacity-55">
+              Projects & Achievements
+            </p>
             <h2 className="mt-3 text-3xl font-black">Impact Highlights</h2>
-            <ul className="mt-6 space-y-4 text-[#0d2342]/85">
+            <ul className="mt-6 space-y-4">
               {achievements.map((item) => (
-                <li key={item} className="rounded-2xl border border-[#0d2342]/10 bg-[#0d2342]/5 p-4">
+                <motion.li
+                  key={item}
+                  whileHover={{ x: 6 }}
+                  className="rounded-2xl border border-current/10 bg-current/5 p-4"
+                >
                   {item}
-                </li>
+                </motion.li>
               ))}
             </ul>
           </div>
 
-          <div className="rounded-[2rem] border border-[#17365d] bg-[#0d1d35] p-8 shadow-lg shadow-black/10">
-            <p className="text-sm uppercase tracking-[0.3em] text-[#f8f3ea]/50">Professional Development</p>
-            <h2 className="mt-3 text-3xl font-black text-[#f8f3ea]">Training & Growth Areas</h2>
+          <div className="rounded-[2rem] border border-black/10 bg-white/45 p-8 shadow-lg dark:border-[#17365d] dark:bg-[#0d1d35]">
+            <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
+              Professional Development
+            </p>
+            <h2 className="mt-3 text-3xl font-black">Training & Growth Areas</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {development.map((item) => (
-                <div key={item} className="rounded-2xl border border-[#f8f3ea]/10 bg-[#08111f]/60 p-4 text-[#f8f3ea]/82">
+                <motion.div
+                  key={item}
+                  whileHover={{ y: -4 }}
+                  className="rounded-2xl border border-black/10 bg-black/5 p-4 dark:border-[#f8f3ea]/10 dark:bg-[#08111f]/60"
+                >
                   {item}
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section id="contact" className="mx-auto max-w-7xl px-6 pb-20 md:px-10">
+      <motion.section
+        id="contact"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={fadeUp}
+        transition={{ duration: 0.6 }}
+        className="mx-auto max-w-7xl px-6 pb-20 md:px-10"
+      >
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[2rem] border border-[#17365d] bg-[#0d1d35] p-8 shadow-lg shadow-black/10">
-            <p className="text-sm uppercase tracking-[0.3em] text-[#f8f3ea]/50">Languages</p>
-            <h2 className="mt-3 text-3xl font-black text-[#f8f3ea]">Communication</h2>
+          <div className="rounded-[2rem] border border-black/10 bg-white/45 p-8 shadow-lg dark:border-[#17365d] dark:bg-[#0d1d35]">
+            <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
+              Languages
+            </p>
+            <h2 className="mt-3 text-3xl font-black">Communication</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-2xl border border-[#f8f3ea]/10 bg-[#08111f]/60 p-5">
-                <p className="text-lg font-bold text-[#f8f3ea]">Arabic</p>
-                <p className="mt-1 text-[#f8f3ea]/65">Native</p>
-              </div>
-              <div className="rounded-2xl border border-[#f8f3ea]/10 bg-[#08111f]/60 p-5">
-                <p className="text-lg font-bold text-[#f8f3ea]">English</p>
-                <p className="mt-1 text-[#f8f3ea]/65">Intermediate</p>
-              </div>
-              <div className="rounded-2xl border border-[#f8f3ea]/10 bg-[#08111f]/60 p-5">
-                <p className="text-lg font-bold text-[#f8f3ea]">French</p>
-                <p className="mt-1 text-[#f8f3ea]/65">Basic</p>
-              </div>
+              {[
+                ["Arabic", "Native"],
+                ["English", "Intermediate"],
+                ["French", "Basic"],
+              ].map(([lang, level]) => (
+                <motion.div
+                  key={lang}
+                  whileHover={{ y: -4 }}
+                  className="rounded-2xl border border-black/10 bg-black/5 p-5 dark:border-[#f8f3ea]/10 dark:bg-[#08111f]/60"
+                >
+                  <p className="text-lg font-bold">{lang}</p>
+                  <p className="mt-1 text-[#0d2342]/65 dark:text-[#f8f3ea]/65">
+                    {level}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
 
-          <div className="rounded-[2rem] bg-gradient-to-br from-[#f8f3ea] via-[#efe3d1] to-[#d8c7b0] p-[1px] shadow-xl shadow-black/20">
-            <div className="h-full rounded-[2rem] bg-[#0c1a30] p-8">
-              <p className="text-sm uppercase tracking-[0.3em] text-[#f8f3ea]/50">Let’s Work Together</p>
-              <h2 className="mt-3 text-3xl font-black text-[#f8f3ea]">Open to Growth Opportunities</h2>
-              <p className="mt-5 leading-8 text-[#f8f3ea]/75">
-                Available for marketing strategy, business development, partnership building, branding support, and digital growth projects.
+          <motion.div
+            whileHover={{ y: -4 }}
+            className="rounded-[2rem] bg-gradient-to-br from-[#0d2342] via-[#17365d] to-[#2d4f77] p-[1px] shadow-xl dark:from-[#f8f3ea] dark:via-[#efe3d1] dark:to-[#d8c7b0]"
+          >
+            <div className="h-full rounded-[2rem] bg-[#f8f3ea] p-8 dark:bg-[#0c1a30]">
+              <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
+                Let’s Work Together
               </p>
-              <div className="mt-8 space-y-4 text-sm text-[#f8f3ea]/85">
-                <a href="mailto:yahyabouybri1@gmail.com" className="block rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 px-5 py-4 hover:bg-[#f8f3ea]/10">
+              <h2 className="mt-3 text-3xl font-black">
+                Open to Growth Opportunities
+              </h2>
+              <p className="mt-5 leading-8 text-[#0d2342]/75 dark:text-[#f8f3ea]/75">
+                Available for marketing strategy, business development,
+                partnership building, branding support, and digital growth
+                projects.
+              </p>
+              <div className="mt-8 space-y-4 text-sm">
+                <a
+                  href="mailto:yahyabouybri1@gmail.com"
+                  className="block rounded-2xl border border-black/10 bg-black/5 px-5 py-4 transition hover:bg-black/10 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6 dark:hover:bg-[#f8f3ea]/10"
+                >
                   yahyabouybri1@gmail.com
                 </a>
-                <a href="tel:+212640016052" className="block rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 px-5 py-4 hover:bg-[#f8f3ea]/10">
+                <a
+                  href="tel:+212640016052"
+                  className="block rounded-2xl border border-black/10 bg-black/5 px-5 py-4 transition hover:bg-black/10 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6 dark:hover:bg-[#f8f3ea]/10"
+                >
                   +212 640 016 052
                 </a>
-                <div className="rounded-2xl border border-[#f8f3ea]/10 bg-[#f8f3ea]/6 px-5 py-4">
+                <div className="rounded-2xl border border-black/10 bg-black/5 px-5 py-4 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6">
                   Agadir, Morocco
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
