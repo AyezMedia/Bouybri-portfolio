@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { FaFacebook, FaTiktok} from "react-icons/fa"; 
+import { SiCanva } from "react-icons/si";
+import { HiOutlineChartBar, HiOutlineVideoCamera, HiOutlineTable } from "react-icons/hi";
 
 export default function YahyaBouybriPortfolio() {
   const navItems = ["About", "Skills", "Experience", "Contact"];
@@ -65,7 +68,14 @@ export default function YahyaBouybriPortfolio() {
     "Business Development",
   ];
 
-  const tools = ["Meta Ads", "TikTok Ads", "Canva", "CapCut", "Excel", "CRM"];
+  const tools = [
+  { name: "Meta Ads", icon: <FaFacebook /> },
+  { name: "TikTok Ads", icon: <FaTiktok /> },
+  { name: "Canva", icon: <SiCanva /> },
+  { name: "CapCut", icon: <HiOutlineVideoCamera /> },
+  { name: "Excel", icon: <HiOutlineTable /> },
+  { name: "CRM", icon: <HiOutlineChartBar /> },
+];
 
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -304,7 +314,7 @@ export default function YahyaBouybriPortfolio() {
                 <motion.span
                   key={skill}
                   whileHover={{ scale: 1.07 }}
-                  className="rounded-full border border-current/15 bg-current/5 px-4 py-2 text-sm"
+                  className="rounded-full border border-current/15 bg-current/5 px-4 py-2 te-smxt"
                 >
                   {skill}
                 </motion.span>
@@ -410,20 +420,21 @@ export default function YahyaBouybriPortfolio() {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-7xl px-6 pb-16 md:px-10"
       >
-        <div className="mb-8 rounded-[2rem] border border-black/10 bg-white/45 p-8 shadow-lg dark:border-[#17365d] dark:bg-[#0d1d35]">
+        <div className="mb-8 rounded-[2rem] border border-black/10 bg-white/45 p-8 shadow-lg text-center dark:border-[#17365d] dark:bg-[#0d1d35]">
           <p className="text-sm uppercase tracking-[0.3em] text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
             Tools
           </p>
           <h2 className="mt-3 text-3xl font-black">Tools I Work With</h2>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5 max-w-5xl mx-auto">
             {tools.map((tool) => (
-              <motion.span
-                key={tool}
-                whileHover={{ y: -4, scale: 1.05 }}
-                className="rounded-full border border-black/10 bg-black/5 px-4 py-2 text-sm dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6"
+              <motion.div
+                key={tool.name}
+                whileHover={{ y: -6, scale: 1.05 }}
+                className="flex items-center justify-center gap-3 rounded-full border border-black/10 bg-black/5 px-5 py-3 text-sm font-medium shadow-sm transition dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6"
               >
-                {tool}
-              </motion.span>
+                <span className="text-lg">{tool.icon}</span>
+                {tool.name}
+              </motion.div>
             ))}
           </div>
         </div>
@@ -484,10 +495,10 @@ export default function YahyaBouybriPortfolio() {
             <h2 className="mt-3 text-3xl font-black">Communication</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-3">
               {[
-                ["Arabic", "Native"],
-                ["English", "Intermediate"],
-                ["French", "Basic"],
-              ].map(([lang, level]) => (
+                ["Arabic", "Native",  "100%"],
+                ["English", "Intermediate", "75%"],
+                ["French", "Basic", "45%"],
+              ].map(([lang, level, width]) => (
                 <motion.div
                   key={lang}
                   whileHover={{ y: -4 }}
@@ -497,6 +508,15 @@ export default function YahyaBouybriPortfolio() {
                   <p className="mt-1 text-[#0d2342]/65 dark:text-[#f8f3ea]/65">
                     {level}
                   </p>
+                      <div className="mt-4 h-3 w-full rounded-full bg-black/10 dark:bg-white/10">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, ease: "easeOut" }}
+                          className="h-3 rounded-full bg-[#0d2342] dark:bg-[#f8f3ea]"
+                        />
+                      </div>
                 </motion.div>
               ))}
             </div>
@@ -518,22 +538,19 @@ export default function YahyaBouybriPortfolio() {
                 partnership building, branding support, and digital growth
                 projects.
               </p>
-              <div className="mt-8 space-y-4 text-sm">
+              <div className="mt-8 grid grid-cols-2 gap-4 text-sm">
                 <a
                   href="mailto:yahyabouybri1@gmail.com"
                   className="block rounded-2xl border border-black/10 bg-black/5 px-5 py-4 transition hover:bg-black/10 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6 dark:hover:bg-[#f8f3ea]/10"
                 >
-                  yahyabouybri1@gmail.com
+                  Email Me
                 </a>
                 <a
-                  href="tel:+212640016052"
+                  href="https://wa.me/212640016052"
                   className="block rounded-2xl border border-black/10 bg-black/5 px-5 py-4 transition hover:bg-black/10 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6 dark:hover:bg-[#f8f3ea]/10"
                 >
-                  +212 640 016 052
+                  WhatsApp
                 </a>
-                <div className="rounded-2xl border border-black/10 bg-black/5 px-5 py-4 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6">
-                  Agadir, Morocco
-                </div>
               </div>
             </div>
           </motion.div>
