@@ -79,6 +79,7 @@ export default function YahyaBouybriPortfolio() {
 
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -128,9 +129,31 @@ export default function YahyaBouybriPortfolio() {
             >
               Hire Me
             </a>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden rounded-lg border border-black/10 p-2 dark:border-white/10"
+            >
+              ☰
+            </button>
           </div>
         </div>
       </header>
+      {menuOpen && (
+  <div className="md:hidden px-6 pb-4">
+    <div className="flex flex-col gap-4 rounded-2xl border border-black/10 bg-white/90 p-4 shadow-lg dark:border-white/10 dark:bg-[#0c1a30]">
+      {navItems.map((item) => (
+        <a
+          key={item}
+          href={`#${item.toLowerCase()}`}
+          onClick={() => setMenuOpen(false)}
+          className="text-sm font-medium"
+        >
+          {item}
+        </a>
+      ))}
+    </div>
+  </div>
+)}
 
       <section
         id="about"
