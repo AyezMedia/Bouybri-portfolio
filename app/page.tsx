@@ -9,7 +9,7 @@ import { SiCanva } from "react-icons/si";
 import { HiOutlineChartBar, HiOutlineVideoCamera, HiOutlineTable } from "react-icons/hi";
 
 export default function YahyaBouybriPortfolio() {
-  const navItems = ["About", "Skills", "Experience", "Contact"];
+  const navItems = ["About", "Skills", "Experience", "Projects", "Contact"];
   const skills = [
     "Marketing Strategy",
     "Business Development",
@@ -388,6 +388,7 @@ export default function YahyaBouybriPortfolio() {
 </motion.section>
 
       <motion.section
+        id="projects"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
