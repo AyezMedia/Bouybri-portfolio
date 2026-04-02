@@ -237,30 +237,22 @@ export default function YahyaBouybriPortfolio() {
                       </div>
                     </div>
 
-                    <div className="mt-8 space-y-4 text-sm">
-                      {[
-                        ["Phone", "+212 640 016 052"],
-                        ["Email", "yahyabouybri1@gmail.com"],
-                        [
-                          "Focus",
-                          "Business development, digital marketing, partnerships, growth",
-                        ],
-                      ].map(([label, value]) => (
-                        <div
-                          key={label}
-                          className="rounded-2xl border border-black/10 bg-black/5 p-4 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/5"
-                        >
-                          <p className="text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
-                            {label}
-                          </p>
-                          <p className="mt-1 font-medium break-all">{value}</p>
-                        </div>
-                      ))}
+                    <div className="mt-8 text-sm">
+                      <motion.div 
+                        whileHover={{ scale: 1.02 }} 
+                        className="rounded-2xl border border-black/10 bg-black/5 p-4 dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/5">
+                        <p className="text-[#0d2342]/50 dark:text-[#f8f3ea]/50">
+                          Focus
+                        </p>
+                        <p className="mt-1 font-medium break-all">
+                          Business development, digital marketing, partnerships, growth
+                        </p>
+                        </motion.div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
           </motion.div>
         </div>
       </section>
