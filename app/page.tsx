@@ -261,23 +261,6 @@ export default function YahyaBouybriPortfolio() {
                 </div>
               </div>
             </div>
-
-            <div className="grid gap-4 sm:grid-cols-3">
-              {[
-                ["Email", "mailto:yahyabouybri1@gmail.com"],
-                ["Phone", "tel:+212640016052"],
-                ["WhatsApp", "https://wa.me/212640016052"],
-              ].map(([label, href]) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  whileHover={{ y: -4, scale: 1.03 }}
-                  className="rounded-2xl border border-black/10 bg-white/35 p-4 text-center text-sm font-semibold transition dark:border-[#f8f3ea]/10 dark:bg-[#f8f3ea]/6"
-                >
-                  {label}
-                </motion.a>
-              ))}
-            </div>
           </motion.div>
         </div>
       </section>
